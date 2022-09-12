@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
 public class P03_JsonPathTest extends HrTestBase {
 
@@ -79,9 +81,12 @@ public class P03_JsonPathTest extends HrTestBase {
                 .accept(ContentType.JSON)
                 .log().uri().
                 when()
-                .get("/employees").prettyPeek();
+                .get("/employees").prettyPeek()
+                .then().time(lessThan(2000L), TimeUnit.MILLISECONDS)
+                .extract().response();
 
         System.out.println(response.statusCode());
+
 
         JsonPath jsonPath = response.jsonPath();
 
