@@ -7,8 +7,7 @@ import lombok.*;
 import java.util.List;
 
 
-@Getter@Setter@ToString
-@NoArgsConstructor@AllArgsConstructor
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Location {
 
