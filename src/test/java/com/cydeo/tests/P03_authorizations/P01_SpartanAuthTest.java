@@ -59,9 +59,11 @@ public class P01_SpartanAuthTest extends SpartanAuthTestbase {
 
       given().accept(ContentType.JSON)
               .auth().basic(username,password)
-              .get("/spartans").prettyPeek()
-              .then().log().ifValidationFails()
-              .statusCode(200);
+              .get("/spartans")
+              .then()
+              .log().ifValidationFails()
+              .statusCode(200)
+              ;
 
     }
 
